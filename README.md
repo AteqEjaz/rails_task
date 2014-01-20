@@ -39,8 +39,6 @@
 
 ##### Seed 4 Customers into the system
 
-Write a script that will seed the following data into the system. Your script should be idempotent.
-
     Customer 1:
       First Name: Dean
       Last Name: Martin
@@ -93,6 +91,15 @@ On the view that shows all charges (most likely the *GET /charges* route), creat
 - List 3 -
   - Header: Successful Charges
   - In this list simply display all the charges that were succesfull.
+
+### Charge creation
+On the view to create a new charge (most likely the *GET /charges/new* route), create a form for submitting new charges. The form should perform the following way:
+
+- Have a select drop down field with a list of existing customers
+- Have an amount text field
+- Have a select drop down field with the following currencies: "usd", "gbp", "eur", "inr"
+
+When a user submits the form, it should make a POST request to the `create` action on the controller. The create action should perform any necessary actions to propery store the submitted data in the database, then redirect the user to the index action for charges.
 
 ### Tests
 
