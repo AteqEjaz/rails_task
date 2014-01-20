@@ -107,6 +107,7 @@ Create the following RSpec tests:
 
   1.  Verify that there are three lists on the screen. One for Successful charges, one for failed charges and one for the disputed charges.
   2.  Verify that in the Successful charges list there are 10 line items. Verify that in the failed charges list there are 5 failed charges. Verify that in the disputed charges list there are failed charges.
+  3.  Verify that a POST request to the create action properly creates a record in the database.
 
 ## Once Complete
 1. Commit and Push your code to your new repository
