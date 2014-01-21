@@ -17,8 +17,9 @@
   <ul>
     <li><h1> Failed Charges </h1></li>
   </ul>
+   <%if @charges_failed.present?%>
+  <% @charges_failed.each_with_index do |charge, index| %> git commit -m
 
-  <% @charges_failed.each_with_index do |charge, index| %>
       <tr style="background-color: #FF0000">
         <td><%= index + 1 %></td>
         <td><%= charge.amount %></td>
@@ -35,6 +36,9 @@
         </td>
       </tr>
   <% end %>
+  <%else%>
+    <h1>No data Found, Please run 'rake db:seed'</h1>
+   <%end%>
   </tbody>
 </table>
 
@@ -52,7 +56,7 @@
   <ul>
     <li><h1> Disputed Charges </h1></li>
   </ul>
-
+  <% if @charges_disputed.present?  %>
   <% @charges_disputed.each_with_index do |charge, index| %>
       <tr style="background-color:#FF5400">
 
@@ -70,7 +74,10 @@
                       :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>
-  <% end %>
+  <%end%>
+  <%else%>
+      <h1>No data Found, Please run 'rake db:seed'</h1>
+  <%end%>
   </tbody>
 </table>
 
@@ -88,7 +95,7 @@
   <ul>
     <li><h1> Successfull Charges </h1></li>
   </ul>
-
+   <%if @charges_success.present?%>
   <% @charges_success.each_with_index do |charge, index| %>
       <tr>
         <td><%= index + 1 %></td>
@@ -106,6 +113,8 @@
         </td>
       </tr>
   <% end %>
+      <h1>No data Found, Please run 'rake db:seed'</h1>
+  <%end%>
   </tbody>
 </table>
 
