@@ -1,0 +1,114 @@
+<!--Ateq : We can definitely create a single partial and pass objects to it, but due to time limitation i'm leaving it for good times. -->
+<%- model_class = Charge -%>
+<div class="page-header">
+  <h1><%= t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table">
+  <thead>
+  <tr>
+    <th><%= t(:No) %></th>
+    <th><%= model_class.human_attribute_name(:amount) %></th>
+    <th><%= model_class.human_attribute_name(:customer_id) %></th>
+    <th><%= model_class.human_attribute_name(:created_at) %></th>
+    <th><%= t '.actions', :default => t("helpers.actions") %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <ul>
+    <li><h1> Failed Charges </h1></li>
+  </ul>
+
+  <% @charges_failed.each_with_index do |charge, index| %>
+      <tr style="background-color: #FF0000">
+        <td><%= index + 1 %></td>
+        <td><%= charge.amount %></td>
+        <td><%= charge.customer.firstname %><%= ' ' %><%= charge.customer.lastname %></td>
+        <td><%= l charge.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_charge_path(charge), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      charge_path(charge),
+                      :method => :delete,
+                      :data => {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th><%= t(:No) %></th>
+    <th><%= model_class.human_attribute_name(:amount) %></th>
+    <th><%= model_class.human_attribute_name(:customer_id) %></th>
+    <th><%= model_class.human_attribute_name(:created_at) %></th>
+    <th><%= t '.actions', :default => t("helpers.actions") %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <ul>
+    <li><h1> Disputed Charges </h1></li>
+  </ul>
+
+  <% @charges_disputed.each_with_index do |charge, index| %>
+      <tr style="background-color:#FF5400">
+
+        <td><%= index + 1 %></td>
+        <td><%= charge.amount %></td>
+        <td><%= charge.customer.firstname if !charge.customer.firstname.nil? %><%= ' ' %><%= charge.customer.lastname if !charge.customer.lastname.nil? %></td>
+        <td><%= l charge.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_charge_path(charge), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      charge_path(charge),
+                      :method => :delete,
+                      :data => {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th><%= t(:No) %></th>
+    <th><%= model_class.human_attribute_name(:amount) %></th>
+    <th><%= model_class.human_attribute_name(:customer_id) %></th>
+    <th><%= model_class.human_attribute_name(:created_at) %></th>
+    <th><%= t '.actions', :default => t("helpers.actions") %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <ul>
+    <li><h1> Successfull Charges </h1></li>
+  </ul>
+
+  <% @charges_success.each_with_index do |charge, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= charge.amount %></td>
+        <td><%= charge.customer.firstname %><%= ' ' %><%= charge.customer.lastname %></td>
+        <td><%= l charge.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_charge_path(charge), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      charge_path(charge),
+                      :method => :delete,
+                      :data => {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_charge_path,
+            :class => 'btn btn-primary' %>
